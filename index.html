@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance</title>
+<body>
+
+    <h1>Smart Attendance System</h1>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <button onclick="markAttendance()">Mark Attendance</button>
+
+    <div class="attendance-list" id="attendanceList">
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: darkcyan;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            /* margin-bottom: 20px; */
+        }
+
+        /* Container for attendance list */
+        .attendance-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Each attendance box */
+        .attendance-item {
+            display: flex;
+            justify-content: space-around;
+            width: 50%;
+            background-color: rgb(236, 244, 244);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius:  10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        function markAttendance() {
+            let nameInput = document.getElementById("name");
+            let name = nameInput.value.trim();
+
+            if(name === "") {
+                alert("Please enter your name");
+                return;
+            }
+
+            let now = new Date();
+            let date = now.toLocaleDateString();
+            let time = now.toLocaleTimeString();
+
+            // Create a box for attendance
+            let div = document.createElement("div");
+            div.className = "attendance-item";
+
+            // Separate sections for Name, Date, Time
+            let nameDiv = document.createElement("div");
+            nameDiv.textContent = name;
+
+            let dateDiv = document.createElement("div");
+            dateDiv.textContent = date;
+
+            let timeDiv = document.createElement("div");
+            timeDiv.textContent = time;
+
+            // Add these to the box
+            div.appendChild(nameDiv);
+            div.appendChild(dateDiv); 
+            div.appendChild(timeDiv);
+
+            // Add box to the attendance list
+            document.getElementById("attendanceList").appendChild(div);
+
+            // Clear input
+            nameInput.value = "";
+            nameInput.focus();
+        }
+
+    </script>
+
+</body>
+</html>
+
